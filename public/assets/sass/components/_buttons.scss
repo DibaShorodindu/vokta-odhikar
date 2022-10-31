@@ -1,0 +1,75 @@
+.btn {
+  &,
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    font-size: $default-font-size;
+    border-radius: 5px;
+    transition: all 0.2s;
+    position: relative;
+    border: none;
+  }
+
+  &-text {
+    background-color: $color-primary;
+    padding: 1rem 5rem;
+    color: $color-grey--dark !important;
+    box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+    transform: translateY(0);
+
+    &:hover,
+    &:focus {
+      background-color: $color-primary;
+      border: none;
+    }
+
+    &:hover {
+      transform: translateY(-0.3rem);
+      box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+      &::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0;
+      }
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+      transform: translateY(-0.1rem);
+      box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+    }
+  }
+
+  &-filter {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background-color: transparent;
+    border: 2px solid $color-grey;
+    color: $color-grey;
+    font-size: 1.4rem;
+
+    &:hover {
+      color: $color-grey;
+    }
+  }
+
+  &-submit {
+    width: max-content;
+    margin: auto;
+    padding: 0.5rem 1rem;
+    background-color: $color-grey--dark;
+    color: $color-white;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $color-grey--dark;
+      color: $color-white;
+      transform: translateY(-0.1rem);
+      box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+    }
+  }
+}

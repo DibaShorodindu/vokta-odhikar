@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Admin dashboard for vokta odhikar app" />
+    <meta name="keywords" content="app," />
+
+    <title>ড্যাশবোর্ড | জাতীয় ভোক্তা-অধিকার সংরক্ষণ অধিদপ্তর</title>
+
+    <!-- GOOGLE FONTS -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- BOOTSTRAP ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
+    />
+
+    <!-- BOOTSTRAP CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <section class="section-dashboard">
+      <!-- START SIDEBAR -->
+      <section class="section-dashboard--sidebar">
+        <div class="logo-box">
+          <a href="index.html">
+            <img class="logo" src="assets/images/logo.png" alt="logo" />
+          </a>
+        </div>
+        <ul class="menu">
+          <li>
+            <a href="index.html" class="menu-item">
+              <i class="bi bi-speedometer2 pe-3"></i>
+              ড্যাশবোর্ড
+            </a>
+          </li>
+          <li>
+            <a href="viewAllCases.html" class="menu-item">
+              <i class="bi bi-archive pe-3"></i>
+              সমস্ত কেস দেখুন
+            </a>
+          </li>
+          <li>
+            <hr />
+          </li>
+
+          <li>
+            <a href="login.html" class="menu-item">
+              <i class="bi bi-box-arrow-right pe-3"></i>
+              লগ আউট
+            </a>
+          </li>
+        </ul>
+      </section>
+      <!-- END SIDEBAR -->
+
+      <!-- START MAIN DASHBOARD -->
+      <section class="section-dashboard-main">
+        <!-- START HEADER -->
+        <section class="section-dashboard--header">
+          <div class="user-details">
+            <h1 class="user-name">ওমর ফারুক</h1>
+            <span class="user-role"> মহাপরিচালক </span>
+          </div>
+
+          <div class="notification">
+            <button type="button" class="btn notification-btn">
+              <div class="notification--icon">
+                <i class="bi bi-bell"></i>
+              </div>
+              <div class="notification--badge"></div>
+            </button>
+          </div>
+
+          <!-- START SHOW WHEN CLICKED ON NOTIFICATION -->
+          <div
+            class="u-box-shadow-1 notification__sidebar d-none animate__animated animate__fadeInRightBig"
+          >
+            <div class="notification--header">
+              <div class="notification--header-title">
+                <h5>নোটিফিকেশান</h5>
+              </div>
+              <div class="notification--header-icons">
+                <div class="btn close-btn">
+                  <i class="bi bi-x-lg"></i>
+                </div>
+              </div>
+            </div>
+            <div class="notification--body">
+              <a class="card" href="#">
+                <div class="card-body">
+                  <div class="notification-icon">
+                    <i class="bi bi-envelope"></i>
+                  </div>
+                  <div class="notification-box">
+                    <div class="notification-text">
+                      একটি নতুন অভিযোগ জমা দেওয়া হয়েছে।
+                    </div>
+                    <div class="notification-time">
+                      <span> ২৬শে এপ্রিল </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- END SHOW WHEN CLICKED ON NOTIFICATION -->
+        </section>
+        <!-- END HEADER -->
+
+        <!-- START CONTENT -->
+        <section class="section-dashboard--content section-caseDetails p-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h2>কেস নম্বর : <span>১০১</span></h2>
+              </div>
+            </div>
+            <div class="row pt-4">
+              <div class="col-md-5">
+                <h3 class="text-decoration-underline">ব্যক্তির বিবরণ</h3>
+
+                <table class="table table-scrollable">
+                  <tbody>
+                    <tr>
+                      <td>নাম:</td>
+                      <td>সেমন্তি হক</td>
+                    </tr>
+                    <tr>
+                      <td>পিতার নাম:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>মাতার নাম:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>জন্ম তারিখ:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>জাতীয় পরিচয়পত্র নাম্বার:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>মোবাইল নাম্বার:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>ই-মেইল:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>লিঙ্গ:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>স্থায়ী ঠিকানা:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>বর্তমান ঠিকানা:</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="col-md-7">
+                <h3 class="text-decoration-underline">অভিযোগের বিবরণ</h3>
+
+                <table class="table table-scrollable">
+                  <tbody>
+                    <tr>
+                      <td>প্রতিষ্ঠানের নাম:</td>
+                      <td>Apple</td>
+                    </tr>
+                    <tr>
+                      <td>পণ্যের নাম:</td>
+                      <td>Mac Book Pro</td>
+                    </tr>
+                    <tr>
+                      <td>প্রতিষ্ঠানের ধরন:</td>
+
+                      <!-- <td>অনলাইন</td> -->
+
+                      <td>স্থানীয়</td>
+                    </tr>
+                    <tr>
+                      <td>প্রতিষ্ঠানের অবস্থান:</td>
+                      <td>দিনাজপুর, রংপুর</td>
+                    </tr>
+                    <tr>
+                      <td>পণ্যের ছবি:</td>
+                      <td>
+                        <img
+                          src="assets/images/product.jpg"
+                          alt="productImageOfCase101"
+                          class="img-fluid"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>পণ্য ক্রয়ের রসিদ:</td>
+                      <td>
+                        <img
+                          src="assets/images/receipt.jpg"
+                          alt="productReceiptOfCase101"
+                          class="img-fluid"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>দপ্তর:</td>
+                      <td>অর্থ বিভাগ - মন্ত্রণালয়/বিভাগ</td>
+                    </tr>
+                    <tr>
+                      <td>অভিযোগের বিষয়:</td>
+                      <td>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing
+                        elit.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>অভিযোগের বিবরণ:</td>
+                      <td>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Incidunt tenetur, suscipit ex voluptate ratione porro
+                        sequi dolore in minus maiores dolores cumque, eum ab,
+                        quod fugit id! Blanditiis, possimus reiciendis?
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>বর্তমান ঠিকানা:</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- END CONTENT -->
+      </section>
+    </section>
+
+    <!-- BOOTSTRAP JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- CHART JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="assets/js/chart.js"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

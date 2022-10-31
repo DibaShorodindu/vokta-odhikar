@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Admin dashboard for vokta odhikar app" />
+  <meta name="keywords" content="app," />
+
+  <title>সমস্ত কেস দেখুন | জাতীয় ভোক্তা-অধিকার সংরক্ষণ অধিদপ্তর</title>
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- BOOTSTRAP ICONS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+
+  <!-- BOOTSTRAP CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+
+  <!-- CUSTOM CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <section class="section-dashboard">
+    <!-- START SIDEBAR -->
+    <section class="section-dashboard--sidebar">
+      <div class="logo-box">
+        <a href="index.html">
+          <img class="logo" src="assets/images/logo.png" alt="logo" />
+        </a>
+      </div>
+      <ul class="menu">
+        <li>
+          <a href="index.html" class="menu-item">
+            <i class="bi bi-speedometer2 pe-3"></i>
+            ড্যাশবোর্ড
+          </a>
+        </li>
+        <li>
+          <a href="viewAllCases.html" class="menu-item active">
+            <i class="bi bi-archive pe-3"></i>
+            সমস্ত কেস দেখুন
+          </a>
+        </li>
+        <li>
+          <hr />
+        </li>
+
+        <li>
+          <a href="login.html" class="menu-item">
+            <i class="bi bi-box-arrow-right pe-3"></i>
+            লগ আউট
+          </a>
+        </li>
+      </ul>
+    </section>
+    <!-- END SIDEBAR -->
+
+    <!-- START MAIN DASHBOARD -->
+    <section class="section-dashboard-main">
+      <!-- START HEADER -->
+      <section class="section-dashboard--header border-bottom">
+        <div class="user-details">
+          <h1 class="user-name">ওমর ফারুক</h1>
+          <span class="user-role"> মহাপরিচালক </span>
+        </div>
+        
+        <div class="notification">
+          <button type="button" class="btn notification-btn">
+            <div class="notification--icon">
+              <i class="bi bi-bell"></i>
+            </div>
+            <div class="notification--badge"></div>
+          </button>
+        </div>
+
+        <!-- START SHOW WHEN CLICKED ON NOTIFICATION -->
+        <div class="u-box-shadow-1 notification__sidebar d-none animate__animated animate__fadeInRightBig">
+          <div class="notification--header">
+            <div class="notification--header-title">
+              <h5>নোটিফিকেশান</h5>
+            </div>
+            <div class="notification--header-icons">
+              <div class="btn close-btn">
+                <i class="bi bi-x-lg"></i>
+              </div>
+            </div>
+          </div>
+          <div class="notification--body">
+            
+            <a class="card" href="#">
+              <div class="card-body">
+                <div class="notification-icon">
+                  <i class="bi bi-envelope"></i>
+                </div>
+                <div class="notification-box">
+                  <div class="notification-text">একটি নতুন অভিযোগ জমা দেওয়া হয়েছে।</div>
+                  <div class="notification-time">
+                    <span> ২৬শে এপ্রিল  </span>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+        <!-- END SHOW WHEN CLICKED ON NOTIFICATION -->
+      </section>
+      <!-- END HEADER -->
+
+      <!-- START SUB HEADER-->
+      <section class="section-dashboard--sub-header border-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="dropdown">
+                <button class="btn btn-filter dropdown-toggle" type="button" id="caseStatusFilter"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  ফিল্টার কেস স্থিতি
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="caseStatusFilter">
+                  <li>
+                    <a id="caseStatusFilter01" class="dropdown-item" href="#">চলমান</a>
+                  </li>
+                  <li>
+                    <a id="caseStatusFilter02" class="dropdown-item" href="#">আপনার পক্ষে</a>
+                  </li>
+                  <li>
+                    <a id="caseStatusFilter03" class="dropdown-item" href="#">আপনার বিপক্ষে</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END SUB HEADER -->
+
+      <!-- START CONTENT -->
+      <section class="section-dashboard--content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">কেস নম্বর</th>
+                    <th scope="col">অভিযোগের বিষয়</th>
+                    <th scope="col">অভিযোগের তারিখ</th>
+                    <th scope="col">শুনানির তারিখ</th>
+                    <th scope="col">কেস স্থিতি</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- <th scope="row">
+                      <input class="form-check-input" type="checkbox">
+                    </th> -->
+                    <td>
+                      <a href="viewCase101.html">
+                        ১০১
+                      </a>
+                    </td>
+                    <td>
+                      অভিযোগের বিষয় ০১
+                    </td>
+                    <td>০১-০১-২০২২</td>
+                    <td>০৪-০৮-২০২২</td>
+                    <td>
+                      <span class="caseStatus caseStatus--running">
+                        চলমান
+                      </span>
+                    </td>
+                    <td>
+                      <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#editCase">
+                        <i class="bi bi-pencil text-warning"></i>
+                      </button>
+
+                      <!-- Start Edit Form Modal -->
+                      <div class="modal fade" id="editCase" tabindex="-1" aria-labelledby="editCaseLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <div class="modal-title fw-bold">
+                                এডিট
+                              </div>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="mb-5 text-start">
+                                  <label for="hearingDate" class="form-label">শুনানির তারিখ</label>
+                                  <input type="date" class="form-control" id="hearingDate">
+                                </div>
+                                <div class="mb-5 text-start">
+                                  <label for="caseStatus" class="form-label">কেস স্থিতি</label>
+
+                                  <div class="dropdown w-50">
+                                    <button class="btn btn-filter dropdown-toggle" type="button" id="caseStatus"
+                                      data-bs-toggle="dropdown" aria-expanded="false">
+                                      কেস স্থিতি নির্বাচন করুন
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="caseStatus">
+                                      <li>
+                                        <a id="caseStatus01" class="dropdown-item" href="#">চলমান</a>
+                                      </li>
+                                      <li>
+                                        <a id="caseStatus02" class="dropdown-item" href="#">আপনার পক্ষে</a>
+                                      </li>
+                                      <li>
+                                        <a id="caseStatus03" class="dropdown-item" href="#">আপনার বিপক্ষে</a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-text">সংরক্ষণ</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- End Edit Form Modal -->
+
+                    </td>
+                    <td>
+                      <a href="#">
+                        <i class="bi bi-trash text-danger"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="viewCase101.html">
+                        ১০২
+                      </a>
+                    </td>
+                    <td>
+                      অভিযোগের বিষয় ০২
+                    </td>
+                    <td>১১-০২-২০২২</td>
+                    <td>০৪-০৯-২০২২</td>
+                    <td>
+                      <span class="caseStatus caseStatus--favor">
+                        আপনার পক্ষে
+                      </span>
+                    </td>
+                    <td>
+                      <a href="#">
+                        <i class="bi bi-pencil text-warning"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="#">
+                        <i class="bi bi-trash text-danger"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="viewCase101.html">
+                        ১০৩
+                      </a>
+                    </td>
+                    <td>
+                      অভিযোগের বিষয় ০৩
+                    </td>
+                    <td>০১-০২-২০২২</td>
+                    <td>১৪-০৯-২০২২</td>
+                    <td>
+                      <span class="caseStatus caseStatus--against">
+                        আপনার বিপক্ষে
+                      </span>
+                    </td>
+                    <td>
+                      <a href="#">
+                        <i class="bi bi-pencil  text-warning"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="#"> <i class="bi bi-trash  text-danger"></i> </a>
+                    </td>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END CONTENT -->
+    </section>
+    <!-- END MAIN DASHBOARD -->
+  </section>
+
+
+
+  <!-- BOOTSTRAP JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+  </script>
+
+  <!-- CUSTOM JS -->
+  <script src="assets/js/filter.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+
+</html>

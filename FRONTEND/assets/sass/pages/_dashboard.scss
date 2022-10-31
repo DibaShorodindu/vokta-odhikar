@@ -1,0 +1,201 @@
+.section-dashboard {
+  display: flex;
+
+  &--sidebar {
+    width: 30rem;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 3rem 2rem;
+
+    .logo-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .logo {
+        height: 10rem;
+        width: 10rem;
+      }
+    }
+
+    .menu {
+      list-style: none;
+      margin-top: 2.5rem;
+      padding: 0;
+
+      .active,
+      .menu-item:hover {
+        color: $color-primary--dark;
+        background: $color-primary--light;
+        box-shadow: rgba(112, 214, 174, 0.2) 0px 8px 24px;
+      }
+
+      &-item {
+        font-size: $default-font-size;
+        font-weight: 500;
+        color: $color-grey;
+
+        padding: 1rem 4rem;
+        margin: 1.5rem;
+        border-radius: 3rem;
+
+        display: flex;
+        justify-content: start;
+      }
+
+      hr {
+        width: 70%;
+        margin: 5rem auto 2rem auto;
+      }
+    }
+  }
+
+  &-main {
+    width: calc(100vw - 30rem);
+    height: 100vh;
+
+    background-color: $color-grey--light;
+  }
+
+  &--header {
+    height: 8rem;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $color-white;
+
+    .user {
+      &-details {
+        flex-direction: column;
+        padding: 2rem 1.5rem 1rem 1.5rem;
+      }
+
+      &-name {
+        font-size: $default-font-size;
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 0;
+        color: $color-grey--dark;
+      }
+
+      &-role {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: $color-grey;
+        line-height: 1.2;
+      }
+    }
+  }
+
+  &--sub-header {
+    height: 6rem;
+    display: flex;
+    justify-content: flex-end;
+
+    .row {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .dropdown {
+      .show {
+        color: $color-grey !important;
+        border: 2px solid $color-grey;
+      }
+      &-menu {
+        width: 100%;
+        font-size: 1.4rem;
+      }
+      &-item {
+        &:active,
+        &:hover {
+          background-color: $color-primary--light;
+          color: $color-grey--dark;
+        }
+      }
+    }
+  }
+
+  &--content {
+    height: auto;
+    background-color: $color-grey--light;
+
+    .table > :not(caption) > * > * {
+      padding: 1.2rem 0.5rem;
+    }
+
+    .table {
+      td,
+      tr {
+        text-align: center;
+      }
+
+      .dropdown {
+        .show {
+          color: $color-grey !important;
+          border: 2px solid $color-grey;
+        }
+        &-menu {
+          width: 100%;
+          font-size: 1.4rem;
+        }
+        &-item {
+          &:active,
+          &:hover {
+            background-color: $color-primary--light;
+            color: $color-grey--dark;
+          }
+        }
+      }
+
+      .caseStatus {
+        width: min-content;
+        padding: 0.5rem 2rem;
+        border-radius: 1.75rem;
+
+        &--running {
+          color: rgb(0, 110, 255);
+          background: rgba(136, 211, 255, 0.541);
+          box-shadow: rgba(112, 177, 214, 0.2) 0px 8px 24px;
+        }
+
+        &--favor {
+          color: $color-primary--dark;
+          background: $color-primary--light;
+          box-shadow: rgba(112, 214, 174, 0.2) 0px 8px 24px;
+        }
+
+        &--against {
+          color: rgb(228, 72, 0);
+          background: rgba(235, 128, 56, 0.308);
+          box-shadow: rgba(241, 106, 72, 0.2) 0px 8px 24px;
+        }
+      }
+    }
+
+    #editCase {
+      .modal {
+        &-body {
+          .form-control {
+            font-size: $default-font-size;
+
+            border: transparent;
+            border-radius: 0;
+            border-bottom: 1px solid $color-primary;
+
+            &:focus {
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

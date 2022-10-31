@@ -1,0 +1,14 @@
+{
+  "name": "vokta-odhikar-admin",
+  "version": "1.0.0",
+  "description": "Admin dashboard for vokta odhikar app",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass assets/sass/style.scss assets/css/style.css -w"
+  },
+  "author": "shamonti",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^7.0.1"
+  }
+}
