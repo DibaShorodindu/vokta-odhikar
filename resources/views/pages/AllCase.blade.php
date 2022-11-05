@@ -54,60 +54,60 @@
             </section>
             <!-- END HEADER -->
 
-            <!-- START SUB HEADER-->
-            <section class="section-dashboard--sub-header border-bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="dropdown">
-                                <button class="btn btn-filter dropdown-toggle" type="button" id="caseStatusFilter"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    ফিল্টার কেস স্থিতি
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="caseStatusFilter">
-                                    <li>
-                                        <a id="caseStatusFilter01" class="dropdown-item" href="#">চলমান</a>
-                                    </li>
-                                    <li>
-                                        <a id="caseStatusFilter02" class="dropdown-item" href="#">আপনার পক্ষে</a>
-                                    </li>
-                                    <li>
-                                        <a id="caseStatusFilter03" class="dropdown-item" href="#">আপনার বিপক্ষে</a>
-                                    </li>
-                                </ul>
+
+            <section id="ShowAll">
+                <!-- START SUB HEADER-->
+                <section class="section-dashboard--sub-header border-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="dropdown">
+                                    <button class="btn btn-filter dropdown-toggle" type="button" id="caseStatusFilter"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                        ফিল্টার কেস স্থিতি
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="caseStatusFilter">
+                                        <li>
+                                            <a  data-id="2" class="caseStatusFilter dropdown-item" href="#">চলমান</a>
+                                        </li>
+                                        <li>
+                                            <a  data-id="1" class="caseStatusFilter dropdown-item" href="#">আপনার পক্ষে</a>
+                                        </li>
+                                        <li>
+                                            <a  data-id="0" class="caseStatusFilter dropdown-item" href="#">আপনার বিপক্ষে</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <!-- END SUB HEADER -->
+                </section>
+                <!-- END SUB HEADER -->
 
-            <!-- START CONTENT -->
-            <section class="section-dashboard--content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>কেস নম্বর</th>
-                                    <th>অভিযোগের বিষয়</th>
-                                    <th>অভিযোগের তারিখ</th>
-                                    <th>শুনানির তারিখ</th>
-                                    <th>কেস স্থিতি</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody id="TableBody">
+                <!-- START CONTENT -->
+                <section class="section-dashboard--content">
+                    <div class="container">
+                        <div class="row">
+                            <div id="getAllComplain" class="col-md-12">
+                                <table class="table">
+                                    <thead id="TableHead">
+                                    
+                                    </thead>
+                                    <tbody id="TableBody">
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
+                <!-- END CONTENT -->
             </section>
-            <!-- END CONTENT -->
+            
+
+            <!-- START CONTENT -->
+        <section id="ShowCase" class="section-dashboard--content section-caseDetails p-5">
+            
         </section>
         <!-- END MAIN DASHBOARD -->
     </section>
@@ -173,7 +173,14 @@
 
 
     <script>
+        let table = $('#Table');
+        let showAll = $('#ShowAll');
+        let showCase = $('#ShowCase');
         let tableBody = $('#TableBody');
+        let tableHead = $('#TableHead');
+        let caseFilter = $('.caseStatusFilter');
+        
+        
         GetAll();
         GetSingle();
         Delete();
@@ -186,7 +193,20 @@
             .then(function(response){
                 if(response.status === 200 && response.data.status === 200){
                     let complains = response.data.complains;
+                    table.attr("class", "table table-striped");
+                    tableHead.empty();
                     tableBody.empty();
+                    tableHead.append(`
+                        <tr>
+                            <th>কেস নম্বর</th>
+                            <th>অভিযোগের বিষয়</th>
+                            <th>অভিযোগের তারিখ</th>
+                            <th>শুনানির তারিখ</th>
+                            <th>কেস স্থিতি</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    `)
                     complains.forEach(function (item) {
                         TableRow(item);
                     })
@@ -278,6 +298,215 @@
             })
         }
 
+        show();
+        function show() {
+            tableBody.on('click', '.show', function (e) {
+                e.preventDefault();
+                let id = $(this).attr('data-id');
+                axios.get(`/show-case/${id}`)
+                .then(function (response) {
+                    if (response.status === 200 && response.data.status === 200){
+                        let complains_details = response.data.complains;
+                        showAll.empty();
+                        DetailTable(complains_details);
+                    }
+                    else{
+                        alert(response.data.message);
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    alert("server error");
+                })
+            })
+        }
+        
+        filter();
+        function filter() {
+           caseFilter.on('click', function (e) {
+                e.preventDefault();
+                let id = $(this).attr('data-id');
+                axios.get(`/filter-case/${id}`)
+                .then(function (response) {
+                    if (response.status === 200 && response.data.status === 200){
+                        let complains = response.data.complains;
+                    table.attr("class", "table table-striped");
+                    tableHead.empty();
+                    tableBody.empty();
+                    tableHead.append(`
+                        <tr>
+                            <th>কেস নম্বর</th>
+                            <th>অভিযোগের বিষয়</th>
+                            <th>অভিযোগের তারিখ</th>
+                            <th>শুনানির তারিখ</th>
+                            <th>কেস স্থিতি</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    `)
+                    complains.forEach(function (item) {
+                        TableRow(item);
+                    })
+                    }
+                    else{
+                        alert(response.data.message);
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    alert("server error");
+                })
+            })
+        }
+
+        function DetailTable(item) {
+            let choloman = `
+                <span class="caseStatus caseStatus--running">
+                    চলমান
+                </span>
+            `;
+            let bipokkhe = `
+               <span class="caseStatus caseStatus--against">
+                আপনার বিপক্ষে
+              </span>
+            `;
+            let pokkhe = `
+                <span class="caseStatus caseStatus--favor">
+                    আপনার পক্ষে
+                  </span>
+            `;
+            showCase.append(`
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2 id="caseNo">কেস নম্বর : <span>${item.case_no}</span></h2>
+                </div>
+              </div>
+              <div class="row pt-4">
+                <div class="col-md-5">
+                  <h3 class="text-decoration-underline">ব্যক্তির বিবরণ</h3>
+  
+                  <table class="table table-scrollable">
+                    <tbody id="UserDetails">
+                        <tr>
+                      <td>নাম:</td>
+                      <td>${item.name}</td>
+                    </tr>
+                    <tr>
+                      <td>পিতার নাম:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>মাতার নাম:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>জন্ম তারিখ:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>জাতীয় পরিচয়পত্র নাম্বার:</td>
+                      <td>${item.nid}</td>
+                    </tr>
+                    <tr>
+                      <td>মোবাইল নাম্বার:</td>
+                      <td>${item.phone}</td>
+                    </tr>
+                    <tr>
+                      <td>ই-মেইল:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>লিঙ্গ:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>স্থায়ী ঠিকানা:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>বর্তমান ঠিকানা:</td>
+                      <td></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+  
+                <div class="col-md-7">
+                  <h3 class="text-decoration-underline">অভিযোগের বিবরণ</h3>
+  
+                  <table class="table table-scrollable">
+                    <tbody id="UserCaseDetails">
+                        <tr>
+                      <td>প্রতিষ্ঠানের নাম:</td>
+                      <td>${item.organization_name}</td>
+                    </tr>
+                    <tr>
+                      <td>পণ্যের নাম:</td>
+                      <td>${item.product_name}</td>
+                    </tr>
+                    <tr>
+                      <td>প্রতিষ্ঠানের ধরন:</td>
+
+                      {{-- <td>${item.department}</td>
+
+                        <td>${item.subDepartment}</td> --}}
+                    </tr>
+                    <tr>
+                      <td>প্রতিষ্ঠানের অবস্থান:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>পণ্যের ছবি:</td>
+                      <td>
+                        <img
+                          src="{{ asset('/') }}uploads/product/${item.product_photo}"
+                          alt="productImage"
+                          class="img-fluid"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>পণ্য ক্রয়ের রসিদ:</td>
+                      <td>
+                        <img
+                          src="{{ asset('/') }}assets/images/${item.invoice_photo}"
+                          alt="productReceipt"
+                          class="img-fluid"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>দপ্তর:</td>
+                      <td>${item.department}, ${item.subDepartment}</td>
+                    </tr>
+                    <tr>
+                      <td>অভিযোগের বিষয়:</td>
+                      <td>
+                        ${item.subject}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>অভিযোগের বিবরণ:</td>
+                      <td>
+                        ${item.description}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>বর্তমান ঠিকানা:</td>
+                      <td></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- END CONTENT -->
+            `)
+            
+        }
+        
         function TableRow(item) {
             let choloman = `
                 <span class="caseStatus caseStatus--running">
@@ -300,7 +529,7 @@
                       <input class="form-check-input" type="checkbox">
                     </th> -->
                     <td>
-                        <a href="viewCase101.html">
+                        <a href="#" data-id="${item.id}" class="show">
                             ${item.case_no}
                         </a>
                     </td>
@@ -326,5 +555,9 @@
                 </tr>
             `)
         }
+
+        
+
+
     </script>
 @endsection

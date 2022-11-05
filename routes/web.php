@@ -25,3 +25,7 @@ Route::get('/get-all', [CaseController::class, "Get"]);
 Route::get('/delete-case/{id}', [CaseController::class, "Delete"]);
 Route::get('/details-case/{id}', [CaseController::class, "GetSingle"]);
 Route::post('/update-case/{id}', [CaseController::class, "Update"]);
+
+Route::get('/show-case/{id}', [CaseController::class, "GetById"]);
+Route::get('/filter-case/{id}', [CaseController::class, "Filter"]);
+

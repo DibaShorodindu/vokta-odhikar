@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Complain;
 use Carbon\Carbon;
+use App\Models\Complain;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
-use DB;
 
 class ComplainControllerAdmin extends Controller
 {
@@ -98,7 +98,7 @@ class ComplainControllerAdmin extends Controller
                 'status' => 401,
                 'message' => 'Please Logged in first',
             ]);
-        }
+        } 
     }
 
     public function updateComplain(Request $request, $id)
@@ -180,7 +180,7 @@ class ComplainControllerAdmin extends Controller
 
         $complain = Complain::where('created_at', '>=', $start)
        ->groupBy(DB::raw('DATE(complains.created_at)'))
-    ->get([DB::raw('COUNT(*) as count'),
+        ->get([DB::raw('COUNT(*) as count'),
         DB::raw('DATE(complains.created_at) as date')]);
 
         $labels = $complain->keys();
@@ -222,6 +222,38 @@ class ComplainControllerAdmin extends Controller
             'caseCount' => $caseCount,
           
         ]);
+    }
+
+    public function getComplain($id)
+    {
+        $complain = Complain::find($id);
+        if ($complain) {
+            return response()->json([
+                'status' => 200,
+                'complains' => $complain,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'no record associated with this id'
+            ]);
+        }
+    }
+    
+    public function filteredComplainList($id)
+    {
+        $complains = Complain::where('case_status', $id)->get();
+        if (count($complains)) {
+            return response()->json([
+                'status' => 200,
+                'complains' => $complains,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 421,
+                'message' => 'there is no records',
+            ]);
+        }
     }
 
 }

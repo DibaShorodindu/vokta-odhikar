@@ -92,8 +92,10 @@ class ComplainController extends Controller
     {
         if (auth('sanctum')->check()) {
             $LoggedinUser_id = auth('sanctum')->user()->id;
-            $searchResult = Complain::where('user_id', $LoggedinUser_id)->where('phone', 'LIKE', $query)
-                ->orWhere('nid', 'LIKE', $query)->orWhere('case_no', 'LIKE', $query)
+            $searchResult = Complain::where('user_id', $LoggedinUser_id)
+                ->where('phone', 'LIKE', $query)
+                ->orWhere('nid', 'LIKE', $query)
+                ->orWhere('case_no', 'LIKE', $query)
                 ->orderBy('id', 'DESC')->get();
             if (count($searchResult)) {
                 return response()->json([

@@ -39,4 +39,17 @@ class CaseController extends Controller
         $res = $this->complain->updateComplain($request ,$request->id)->content();
         return json_decode($res);
     }
+
+    function GetById(Request $request)
+    {
+        $res = $this->complain->getComplain($request->id)->content();
+        $res = json_decode($res);
+        return $res;
+    }
+    function Filter(Request $request)
+    {
+        $res = $this->complain->filteredComplainList($request->id)->content();
+        $res = json_decode($res);
+        return $res;
+    }
 }

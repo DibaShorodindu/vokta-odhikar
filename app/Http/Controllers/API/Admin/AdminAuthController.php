@@ -14,9 +14,9 @@ class AdminAuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:191',
-            'email' => 'required|unique:users,email',
+            'phone' => 'required|min:11|max:11|unique:users,phone',
             'password' => 'required|min:8',
-            'nid' => 'required|min:10|max:13',
+            'nid' => 'required|min:10|max:13|unique:users,nid',
         ]);
 
         if ($validator->fails()) {
@@ -26,6 +26,7 @@ class AdminAuthController extends Controller
         } else {
             $user = User::create([
                 'name' => $request->input('name'),
+                'phone' => $request->input('phone'),
                 'nid' => $request->input('nid'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
